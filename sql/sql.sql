@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `sbr` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `sbr`;
 -- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: sbr
@@ -35,7 +37,7 @@ CREATE TABLE `__efmigrationshistory` (
 
 LOCK TABLES `__efmigrationshistory` WRITE;
 /*!40000 ALTER TABLE `__efmigrationshistory` DISABLE KEYS */;
-INSERT INTO `__efmigrationshistory` VALUES ('20190809030007_InitialCreate','2.2.6-servicing-10079');
+INSERT INTO `__efmigrationshistory` VALUES ('20190809030007_InitialCreate','2.2.6-servicing-10079'),('20190809210511_ModelMigration1','2.2.6-servicing-10079'),('20190809211008_ModelMigration2','2.2.6-servicing-10079'),('20190809211543_ModelMigration3','2.2.6-servicing-10079'),('20190809213838_ModelMigration4','2.2.6-servicing-10079');
 /*!40000 ALTER TABLE `__efmigrationshistory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -236,6 +238,118 @@ LOCK TABLES `aspnetusertokens` WRITE;
 /*!40000 ALTER TABLE `aspnetusertokens` DISABLE KEYS */;
 /*!40000 ALTER TABLE `aspnetusertokens` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `caracteristicas`
+--
+
+DROP TABLE IF EXISTS `caracteristicas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `caracteristicas` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` text,
+  `Valor` text,
+  `ClienteId` int(11) DEFAULT NULL,
+  `PropiedadId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Id`),
+  KEY `IX_Caracteristicas_ClienteId` (`ClienteId`),
+  KEY `IX_Caracteristicas_PropiedadId` (`PropiedadId`),
+  CONSTRAINT `FK_Caracteristicas_Clientes_ClienteId` FOREIGN KEY (`ClienteId`) REFERENCES `clientes` (`Id`) ON DELETE RESTRICT,
+  CONSTRAINT `FK_Caracteristicas_Propiedades_PropiedadId` FOREIGN KEY (`PropiedadId`) REFERENCES `propiedades` (`Id`) ON DELETE RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `caracteristicas`
+--
+
+LOCK TABLES `caracteristicas` WRITE;
+/*!40000 ALTER TABLE `caracteristicas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `caracteristicas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `citas`
+--
+
+DROP TABLE IF EXISTS `citas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `citas` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `FechaInicio` datetime NOT NULL,
+  `FechaFinal` datetime NOT NULL,
+  `ClienteId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Id`),
+  KEY `IX_Citas_ClienteId` (`ClienteId`),
+  CONSTRAINT `FK_Citas_Clientes_ClienteId` FOREIGN KEY (`ClienteId`) REFERENCES `clientes` (`Id`) ON DELETE RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `citas`
+--
+
+LOCK TABLES `citas` WRITE;
+/*!40000 ALTER TABLE `citas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `citas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `clientes`
+--
+
+DROP TABLE IF EXISTS `clientes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `clientes` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` text,
+  `Contacto` text,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `clientes`
+--
+
+LOCK TABLES `clientes` WRITE;
+/*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `propiedades`
+--
+
+DROP TABLE IF EXISTS `propiedades`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `propiedades` (
+  `Id` int(11) NOT NULL,
+  `Titulo` text,
+  `Precio` double NOT NULL DEFAULT '0',
+  `CitaId` int(11) DEFAULT NULL,
+  `ContactoPropietario` text,
+  `Descripcion` text,
+  `Moneda` text,
+  `NombrePropietario` text,
+  PRIMARY KEY (`Id`),
+  KEY `IX_Propiedades_CitaId` (`CitaId`),
+  CONSTRAINT `FK_Propiedades_Citas_CitaId` FOREIGN KEY (`CitaId`) REFERENCES `citas` (`Id`) ON DELETE RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `propiedades`
+--
+
+LOCK TABLES `propiedades` WRITE;
+/*!40000 ALTER TABLE `propiedades` DISABLE KEYS */;
+/*!40000 ALTER TABLE `propiedades` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -246,4 +360,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-08-09  8:49:59
+-- Dump completed on 2019-08-09 16:47:57

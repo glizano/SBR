@@ -25,8 +25,8 @@ DROP TABLE IF EXISTS `__efmigrationshistory`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `__efmigrationshistory` (
-  `MigrationId` varchar(150) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `ProductVersion` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `MigrationId` varchar(150) NOT NULL,
+  `ProductVersion` varchar(32) NOT NULL,
   PRIMARY KEY (`MigrationId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -37,7 +37,7 @@ CREATE TABLE `__efmigrationshistory` (
 
 LOCK TABLES `__efmigrationshistory` WRITE;
 /*!40000 ALTER TABLE `__efmigrationshistory` DISABLE KEYS */;
-INSERT INTO `__efmigrationshistory` VALUES ('20190809030007_InitialCreate','2.2.6-servicing-10079'),('20190809210511_ModelMigration1','2.2.6-servicing-10079'),('20190809211008_ModelMigration2','2.2.6-servicing-10079'),('20190809211543_ModelMigration3','2.2.6-servicing-10079'),('20190809213838_ModelMigration4','2.2.6-servicing-10079');
+INSERT INTO `__efmigrationshistory` VALUES ('20190809210511_ModelMigration1','2.2.6-servicing-10079'),('20190809211008_ModelMigration2','2.2.6-servicing-10079'),('20190809211543_ModelMigration3','2.2.6-servicing-10079'),('20190809213838_ModelMigration4','2.2.6-servicing-10079'),('20190820025226_Migration5','2.2.6-servicing-10079'),('20190820025309_M6','2.2.6-servicing-10079'),('20190820141307_I1','2.2.6-servicing-10079');
 /*!40000 ALTER TABLE `__efmigrationshistory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -187,15 +187,15 @@ CREATE TABLE `aspnetusers` (
   `NormalizedUserName` varchar(85) DEFAULT NULL,
   `Email` varchar(256) DEFAULT NULL,
   `NormalizedEmail` varchar(85) DEFAULT NULL,
-  `EmailConfirmed` bit(1) NOT NULL,
+  `EmailConfirmed` int(11) NOT NULL,
   `PasswordHash` text,
   `SecurityStamp` text,
   `ConcurrencyStamp` text,
   `PhoneNumber` text,
-  `PhoneNumberConfirmed` bit(1) NOT NULL,
-  `TwoFactorEnabled` bit(1) NOT NULL,
+  `PhoneNumberConfirmed` int(11) NOT NULL,
+  `TwoFactorEnabled` int(11) NOT NULL,
   `LockoutEnd` timestamp NULL DEFAULT NULL,
-  `LockoutEnabled` bit(1) NOT NULL,
+  `LockoutEnabled` int(11) NOT NULL,
   `AccessFailedCount` int(11) NOT NULL,
   PRIMARY KEY (`Id`),
   UNIQUE KEY `UserNameIndex` (`NormalizedUserName`),
@@ -209,7 +209,7 @@ CREATE TABLE `aspnetusers` (
 
 LOCK TABLES `aspnetusers` WRITE;
 /*!40000 ALTER TABLE `aspnetusers` DISABLE KEYS */;
-INSERT INTO `aspnetusers` VALUES ('2f0aba92-e0e5-4c88-9dac-354f6a780477','g.lizano@hotmail.es','G.LIZANO@HOTMAIL.ES','g.lizano@hotmail.es','G.LIZANO@HOTMAIL.ES',_binary '\0','AQAAAAEAACcQAAAAEK7Pobg2/ZrZnkJuOAfuEQ1y0xBDQ76sl/Bp4tF3BclntZtdJ4gvIL3gSDsnqGWzDQ==','MRSOMUJ56ETMCPDARNLNE4AYEBHZYLEE','4f61ae1a-de47-4516-bbed-c6fd66becaf5',NULL,_binary '\0',_binary '\0',NULL,_binary '',0);
+INSERT INTO `aspnetusers` VALUES ('4b416e4e-4e56-41a0-9d14-3bec6a67b50b','g.lizano@hotmail.es','G.LIZANO@HOTMAIL.ES','g.lizano@hotmail.es','G.LIZANO@HOTMAIL.ES',0,'AQAAAAEAACcQAAAAEPXIsbGe7U8VQbVEUu3WzIRfQymxtBOlRuy3udHJobhVueaf8AvK9g5blcef2pRryA==','VXD5XBY7YHFXT47F5YR4H45NKXMK5P3A','4999a406-8957-4f5e-b077-fe5954b68b29',NULL,0,0,NULL,1,0);
 /*!40000 ALTER TABLE `aspnetusers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -328,7 +328,7 @@ DROP TABLE IF EXISTS `propiedades`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `propiedades` (
-  `Id` int(11) NOT NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Titulo` text,
   `Precio` double NOT NULL DEFAULT '0',
   `CitaId` int(11) DEFAULT NULL,
@@ -339,7 +339,7 @@ CREATE TABLE `propiedades` (
   PRIMARY KEY (`Id`),
   KEY `IX_Propiedades_CitaId` (`CitaId`),
   CONSTRAINT `FK_Propiedades_Citas_CitaId` FOREIGN KEY (`CitaId`) REFERENCES `citas` (`Id`) ON DELETE RESTRICT
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -348,6 +348,7 @@ CREATE TABLE `propiedades` (
 
 LOCK TABLES `propiedades` WRITE;
 /*!40000 ALTER TABLE `propiedades` DISABLE KEYS */;
+INSERT INTO `propiedades` VALUES (3,'dasda',5,NULL,'adsa','dasda','dsasd','dasda');
 /*!40000 ALTER TABLE `propiedades` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -360,4 +361,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-08-09 16:47:57
+-- Dump completed on 2019-08-26 11:00:15

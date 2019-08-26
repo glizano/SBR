@@ -1,8 +1,67 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<SBR.Models.Propiedad>
+
+@{
+    ViewData["Title"] = "Inicio";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <section id="property-search" class="property-search bg-site-dark-brown mt-5 p-3">
+        <div class="text-center">
+            <h4 class="widget-title widgettitle bg-sitep-light-brown">Buscar Propiedades</h4>
+            <form role="search" method="get" id="searchform" action="#" class="form-inline justify-content-center">
+                <input type="hidden" value="" name="s"><input type="hidden" value="listing" name="post_type">
+                <select name="categora" id="categora" class="form-control mx-2">
+                    <option value="" selected="selected">Todas las propiedades</option>
+                    <option value="casas">Casas</option>
+                    <option value="lote">Lote</option>
+                    <option value="apartamentos">Apartamentos</option>
+                    <option value="comercial">Comercial</option>
+                </select>
+                <select name="operacion" id="operacion" class="form-control mx-2">
+                    <option value="" selected="selected">Compra/Alquiler</option>
+                    <option value="compra">Compra</option>
+                    <option value="alquiler">Alquiler</option>
+                </select>
+                <select name="provincia" id="provincia" class="form-control mx-2">
+                    <option value="" selected="selected">Todas las provincias</option>
+                    <option value="heredia">Heredia</option>
+                    <option value="alajuela">Alajuela</option>
+                    <option value="san-jose">San José</option>
+                    <option value="guanacaste">Guanacaste</option>
+                    <option value="puntarenas">Puntarenas</option>
+                </select>
+                <input type="submit" id="searchsubmit" class="searchsubmit form-control mx-2 btn-success" value="Buscar">
+                <div class="clear"></div>
+            </form>
+        </div>
+    </section>
+    <div id="propiedades" class="mt-5">
+        <div>
+            <div class="bg-site-dark-brown pt-2 pb-1">
+                <h4 class="widget-title widgettitle">Nuestras Propiedades</h4>
+            </div>
+            <div class="row">
+                @foreach(Propiedad item in Model)
+                {
+                    <div class="col-md-6 col-lg-4 px-3 mt-2">
+                        <div class="bg-white">
+                            <a asp-controller="Propiedades" asp-action="Details" asp-route-id="@item.Id" class="text-dark">
+                                @if (item.imagenes.Count() > 0)
+                                {
+                                    <img src="~/files/propiedades/@item.Id/@item.imagenes.FirstOrDefault()" class="w-100" />
+                                }
+                                <div class="p-3">
+                                    <p class="pnomargin">@item.Moneda @item.Precio</p>
+                                    <p class="pnomargin">@item.Titulo</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+            @*<div class="row mt-2">
+                <button type="button" id="btn-mostrar-mas" class="form-control mx-2 btn-success col-md-2 col-6 mx-auto">Mostrar más</button>
+            </div>*@
+        </div>
+    </div>
 </div>

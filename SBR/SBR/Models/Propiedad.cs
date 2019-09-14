@@ -19,6 +19,8 @@ namespace SBR.Models
         public string NombrePropietario { set; get; }
         [Display(Name = "Contacto Propietario")]
         public string ContactoPropietario { set; get; }
+        public string Tipo { set; get; }
+        public string Categoria { set; get; }
 
         [NotMapped]
         public virtual List<string> imagenes { set; get; } = new List<string>();

@@ -57,6 +57,11 @@ namespace SBR.Controllers
                 return NotFound();
             }
 
+            var filesPath = $"{this._hostingEnvironment.WebRootPath}\\files\\propiedades\\{propiedad.Id}";
+            string[] fileEntries = Directory.GetFiles(filesPath).Select(Path.GetFileName).ToArray();
+            foreach (string fileName in fileEntries)
+                propiedad.imagenes.Add(fileName);
+
             return View(propiedad);
         }
 

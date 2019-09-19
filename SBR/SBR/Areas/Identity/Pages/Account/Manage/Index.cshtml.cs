@@ -70,7 +70,7 @@ namespace SBR.Areas.Identity.Pages.Account.Manage
 
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
 
-            return Page();
+            return Redirect("Manage/"+ManageNavPages.ChangePassword);
         }
 
         public async Task<IActionResult> OnPostAsync()

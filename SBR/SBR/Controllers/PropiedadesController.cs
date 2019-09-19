@@ -92,12 +92,13 @@ namespace SBR.Controllers
 
                 fileName = verifyFileName(fileName, filesPath);
 
-                var fullFilePath = Path.Combine(filesPath, fileName);               
+                var fullFilePath = Path.Combine(filesPath, fileName);
+
+                if (!Directory.Exists(filesPath))
+                    Directory.CreateDirectory(filesPath);
 
                 if (imgPrincipal != null && imgPrincipal.Length > 0)
                 {
-                    if (!Directory.Exists(filesPath))
-                        Directory.CreateDirectory(filesPath);
                     using (FileStream stream = new FileStream(fullFilePath, FileMode.Create))
                     {
                         await imgPrincipal.CopyToAsync(stream);
@@ -186,6 +187,11 @@ namespace SBR.Controllers
             var propiedad = await _context.Propiedades.FindAsync(id);
             _context.Propiedades.Remove(propiedad);
             await _context.SaveChangesAsync();
+            var filesPath = $"{this._hostingEnvironment.WebRootPath}\\files\\propiedades\\{propiedad.Id}";
+            if (Directory.Exists(filesPath))
+            {
+                PropiedadesController.borrarArchivos(filesPath);
+            }
             return RedirectToAction(nameof(Index));
         }
 
@@ -240,6 +246,20 @@ namespace SBR.Controllers
                 cont++;
             }
             return fileName;
+        }
+
+        public static void borrarArchivos(string path)
+        {
+            System.IO.DirectoryInfo di = new DirectoryInfo(path);
+
+            foreach (FileInfo file in di.GetFiles())
+            {
+                file.Delete();
+            }
+            foreach (DirectoryInfo dir in di.GetDirectories())
+            {
+                dir.Delete(true);
+            }
         }
     }
 }

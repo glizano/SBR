@@ -14,47 +14,35 @@
                 @Html.DisplayNameFor(model => model.Descripcion)
             </dt>
             <dd class="text-xl-left">
-                @Html.DisplayFor(model => model.Descripcion)
+                @Html.Raw(Model.Descripcion)
             </dd>
         </dl>
-        <dl class="col-md-6 mt-4">
-            <dt class="h4">
-                @Html.DisplayNameFor(model => model.Titulo)
-            </dt>
-            <dd class="text-xl-left">
-                @Html.DisplayFor(model => model.Titulo)
-            </dd>
-            <dt class="h4">
-                @Html.DisplayNameFor(model => model.Precio)
-            </dt>
-            <dd class="text-xl-left">
-                @Html.DisplayFor(model => model.Precio)
-            </dd>
-            <dt class="h4">
-                @Html.DisplayNameFor(model => model.Moneda)
-            </dt>
-            <dd class="text-xl-left">
-                @Html.DisplayFor(model => model.Moneda)
-            </dd>
-            <dt class="h4">
-                @Html.DisplayNameFor(model => model.Descripcion)
-            </dt>
-            <dd class="text-xl-left">
-                @Html.DisplayFor(model => model.Descripcion)
-            </dd>
-            <dt class="h4">
-                @Html.DisplayNameFor(model => model.NombrePropietario)
-            </dt>
-            <dd class="text-xl-left">
-                @Html.DisplayFor(model => model.NombrePropietario)
-            </dd>
-            <dt class="h4">
-                @Html.DisplayNameFor(model => model.ContactoPropietario)
-            </dt>
-            <dd class="text-xl-left">
-                @Html.DisplayFor(model => model.ContactoPropietario)
-            </dd>
-        </dl>
+        <div class="col-12">
+            <dl class="row">
+                <dt class=" col-2 h4">
+                    @Html.DisplayNameFor(model => model.Precio)
+                </dt>
+                <dd class="col-4 text-xl-left">
+                    @Html.DisplayFor(model => model.Moneda) @String.Format("{0:0,0}", Model.Precio)
+                </dd>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <dt class=" col-2 h4">
+                        @Html.DisplayNameFor(model => model.NombrePropietario)
+                    </dt>
+                    <dd class="col-4 text-xl-left">
+                        @Html.DisplayFor(model => model.NombrePropietario)
+                    </dd>
+                    <dt class=" col-2 h4">
+                        @Html.DisplayNameFor(model => model.ContactoPropietario)
+                    </dt>
+                    <dd class="col-4 text-xl-left">
+                        @Html.DisplayFor(model => model.ContactoPropietario)
+                    </dd>
+                    
+                }
+            </dl>
+        </div>
     </div>
 @if(User.Identity.IsAuthenticated)
 {

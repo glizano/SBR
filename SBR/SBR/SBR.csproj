@@ -17,7 +17,7 @@
 
 
   <ItemGroup>
-    <Folder Include="wwwroot\files\propiedades\" />
+    <Folder Include="wwwroot\files\propiedades\7\" />
   </ItemGroup>
 
 </Project>

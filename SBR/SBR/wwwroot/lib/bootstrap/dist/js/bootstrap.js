@@ -22,7 +22,7 @@
     }
   }
 
-  function _createClass(Constructor, protoProps, staticProps) {
+  function _CreateClass(Constructor, protoProps, staticProps) {
     if (protoProps) _defineProperties(Constructor.prototype, protoProps);
     if (staticProps) _defineProperties(Constructor, staticProps);
     return Constructor;
@@ -63,7 +63,7 @@
   }
 
   function _inheritsLoose(subClass, superClass) {
-    subClass.prototype = Object.create(superClass.prototype);
+    subClass.prototype = Object.Create(superClass.prototype);
     subClass.prototype.constructor = subClass;
     subClass.__proto__ = superClass;
   }
@@ -357,7 +357,7 @@
       };
     };
 
-    _createClass(Alert, null, [{
+    _CreateClass(Alert, null, [{
       key: "VERSION",
       get: function get() {
         return VERSION;
@@ -499,7 +499,7 @@
       });
     };
 
-    _createClass(Button, null, [{
+    _CreateClass(Button, null, [{
       key: "VERSION",
       get: function get() {
         return VERSION$1;
@@ -1097,7 +1097,7 @@
       event.preventDefault();
     };
 
-    _createClass(Carousel, null, [{
+    _CreateClass(Carousel, null, [{
       key: "VERSION",
       get: function get() {
         return VERSION$2;
@@ -1450,7 +1450,7 @@
       });
     };
 
-    _createClass(Collapse, null, [{
+    _CreateClass(Collapse, null, [{
       key: "VERSION",
       get: function get() {
         return VERSION$3;
@@ -1980,7 +1980,7 @@
       items[index].focus();
     };
 
-    _createClass(Dropdown, null, [{
+    _CreateClass(Dropdown, null, [{
       key: "VERSION",
       get: function get() {
         return VERSION$4;
@@ -2366,7 +2366,7 @@
       var animate = $(this._element).hasClass(ClassName$5.FADE) ? ClassName$5.FADE : '';
 
       if (this._isShown && this._config.backdrop) {
-        this._backdrop = document.createElement('div');
+        this._backdrop = document.CreateElement('div');
         this._backdrop.className = ClassName$5.BACKDROP;
 
         if (animate) {
@@ -2512,7 +2512,7 @@
 
     _proto._getScrollbarWidth = function _getScrollbarWidth() {
       // thx d.walsh
-      var scrollDiv = document.createElement('div');
+      var scrollDiv = document.CreateElement('div');
       scrollDiv.className = ClassName$5.SCROLLBAR_MEASURER;
       document.body.appendChild(scrollDiv);
       var scrollbarWidth = scrollDiv.getBoundingClientRect().width - scrollDiv.clientWidth;
@@ -2544,7 +2544,7 @@
       });
     };
 
-    _createClass(Modal, null, [{
+    _CreateClass(Modal, null, [{
       key: "VERSION",
       get: function get() {
         return VERSION$5;
@@ -2700,9 +2700,9 @@
     }
 
     var domParser = new window.DOMParser();
-    var createdDocument = domParser.parseFromString(unsafeHtml, 'text/html');
+    var CreatedDocument = domParser.parseFromString(unsafeHtml, 'text/html');
     var whitelistKeys = Object.keys(whiteList);
-    var elements = [].slice.call(createdDocument.body.querySelectorAll('*'));
+    var elements = [].slice.call(CreatedDocument.body.querySelectorAll('*'));
 
     var _loop = function _loop(i, len) {
       var el = elements[i];
@@ -2728,7 +2728,7 @@
       if (_ret === "continue") continue;
     }
 
-    return createdDocument.body.innerHTML;
+    return CreatedDocument.body.innerHTML;
   }
 
   /**
@@ -3394,7 +3394,7 @@
       });
     };
 
-    _createClass(Tooltip, null, [{
+    _CreateClass(Tooltip, null, [{
       key: "VERSION",
       get: function get() {
         return VERSION$6;
@@ -3580,7 +3580,7 @@
       });
     };
 
-    _createClass(Popover, null, [{
+    _CreateClass(Popover, null, [{
       key: "VERSION",
       // Getters
       get: function get() {
@@ -3897,7 +3897,7 @@
       });
     };
 
-    _createClass(ScrollSpy, null, [{
+    _CreateClass(ScrollSpy, null, [{
       key: "VERSION",
       get: function get() {
         return VERSION$8;
@@ -4142,7 +4142,7 @@
       });
     };
 
-    _createClass(Tab, null, [{
+    _CreateClass(Tab, null, [{
       key: "VERSION",
       get: function get() {
         return VERSION$9;
@@ -4358,7 +4358,7 @@
       });
     };
 
-    _createClass(Toast, null, [{
+    _CreateClass(Toast, null, [{
       key: "VERSION",
       get: function get() {
         return VERSION$a;

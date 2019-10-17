@@ -9,8 +9,8 @@ using SBR.Data;
 namespace SBR.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190809213838_ModelMigration4")]
-    partial class ModelMigration4
+    [Migration("20190827020218_M1")]
+    partial class M1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -77,6 +77,8 @@ namespace SBR.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Categoria");
+
                     b.Property<int?>("CitaId");
 
                     b.Property<string>("ContactoPropietario");
@@ -88,6 +90,8 @@ namespace SBR.Migrations
                     b.Property<string>("NombrePropietario");
 
                     b.Property<double>("Precio");
+
+                    b.Property<string>("Tipo");
 
                     b.Property<string>("Titulo");
 

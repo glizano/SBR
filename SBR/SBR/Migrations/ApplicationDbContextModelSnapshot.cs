@@ -75,6 +75,8 @@ namespace SBR.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Categoria");
+
                     b.Property<int?>("CitaId");
 
                     b.Property<string>("ContactoPropietario");
@@ -86,6 +88,8 @@ namespace SBR.Migrations
                     b.Property<string>("NombrePropietario");
 
                     b.Property<double>("Precio");
+
+                    b.Property<string>("Tipo");
 
                     b.Property<string>("Titulo");
 

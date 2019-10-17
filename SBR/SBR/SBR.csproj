@@ -15,4 +15,9 @@
     <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.17" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="wwwroot\files\propiedades\7\" />
+  </ItemGroup>
+
 </Project>

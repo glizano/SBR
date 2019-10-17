@@ -5,12 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Propiedades</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Agregar Nueva</a>
 </p>
-<table class="table">
+<table class="table" id="table-propiedades">
     <thead>
         <tr>
             <th>
@@ -31,36 +31,53 @@
             <th>
                 @Html.DisplayNameFor(model => model.ContactoPropietario)
             </th>
+            <th>Imagen principal</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Titulo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Precio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Moneda)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NombrePropietario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ContactoPropietario)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Precio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Moneda)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombrePropietario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactoPropietario)
+                </td>
+                <td>
+                    @if (item.imagenes.Count() > 0)
+                    {
+                        <img height="60" src="~/files/propiedades/@item.Id/@item.imagenes.FirstOrDefault()" />
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Borrar</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+@section Scripts {
+    <script type="text/javascript">
+        // $(document).ready(function() {
+        //$('#table-propiedades').DataTable();
+        //} );
+    </script>
+   
+}

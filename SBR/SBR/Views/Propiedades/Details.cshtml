@@ -1,55 +1,54 @@
 ﻿@model SBR.Models.Propiedad
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalles";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
 
+    <div class="row bg-white p-4">
+        <div class="col-12 text-center"><h1>@Model.Titulo</h1></div>
+        <div class="col-12 text-center"><img height="350" src="~/files/propiedades/@Model.Id/@Model.imagenes.FirstOrDefault()" /></div>
+        <dl class="col-12 mt-4">
+            <dt class="h3">
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </dt>
+            <dd class="text-xl-left">
+                @Html.Raw(Model.Descripcion)
+            </dd>
+        </dl>
+        <div class="col-12">
+            <dl class="row">
+                <dt class=" col-2 h4">
+                    @Html.DisplayNameFor(model => model.Precio)
+                </dt>
+                <dd class="col-4 text-xl-left">
+                    @Html.DisplayFor(model => model.Moneda) @String.Format("{0:0,0}", Model.Precio)
+                </dd>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <dt class=" col-2 h4">
+                        @Html.DisplayNameFor(model => model.NombrePropietario)
+                    </dt>
+                    <dd class="col-4 text-xl-left">
+                        @Html.DisplayFor(model => model.NombrePropietario)
+                    </dd>
+                    <dt class=" col-2 h4">
+                        @Html.DisplayNameFor(model => model.ContactoPropietario)
+                    </dt>
+                    <dd class="col-4 text-xl-left">
+                        @Html.DisplayFor(model => model.ContactoPropietario)
+                    </dd>
+                    
+                }
+            </dl>
+        </div>
+    </div>
+@if(User.Identity.IsAuthenticated)
+{
 <div>
-    <h4>Propiedad</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Titulo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Titulo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Precio)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Precio)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Moneda)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Moneda)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NombrePropietario)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NombrePropietario)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ContactoPropietario)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ContactoPropietario)
-        </dd>
-    </dl>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Editar</a> |
+    <a asp-action="Index">Volver a la lista</a>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+}
+

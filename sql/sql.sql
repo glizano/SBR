@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `sbr` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `sbr`;
 -- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: sbr
@@ -25,8 +23,8 @@ DROP TABLE IF EXISTS `__efmigrationshistory`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `__efmigrationshistory` (
-  `MigrationId` varchar(150) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `ProductVersion` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `MigrationId` varchar(150) NOT NULL,
+  `ProductVersion` varchar(32) NOT NULL,
   PRIMARY KEY (`MigrationId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -37,7 +35,7 @@ CREATE TABLE `__efmigrationshistory` (
 
 LOCK TABLES `__efmigrationshistory` WRITE;
 /*!40000 ALTER TABLE `__efmigrationshistory` DISABLE KEYS */;
-INSERT INTO `__efmigrationshistory` VALUES ('20190809030007_InitialCreate','2.2.6-servicing-10079'),('20190809210511_ModelMigration1','2.2.6-servicing-10079'),('20190809211008_ModelMigration2','2.2.6-servicing-10079'),('20190809211543_ModelMigration3','2.2.6-servicing-10079'),('20190809213838_ModelMigration4','2.2.6-servicing-10079');
+INSERT INTO `__efmigrationshistory` VALUES ('20190809210511_ModelMigration1','2.2.6-servicing-10079'),('20190809211008_ModelMigration2','2.2.6-servicing-10079'),('20190809211543_ModelMigration3','2.2.6-servicing-10079'),('20190809213838_ModelMigration4','2.2.6-servicing-10079'),('20190820025226_Migration5','2.2.6-servicing-10079'),('20190820025309_M6','2.2.6-servicing-10079'),('20190820141307_I1','2.2.6-servicing-10079'),('20190827020218_M1','2.2.6-servicing-10079');
 /*!40000 ALTER TABLE `__efmigrationshistory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -187,15 +185,15 @@ CREATE TABLE `aspnetusers` (
   `NormalizedUserName` varchar(85) DEFAULT NULL,
   `Email` varchar(256) DEFAULT NULL,
   `NormalizedEmail` varchar(85) DEFAULT NULL,
-  `EmailConfirmed` bit(1) NOT NULL,
+  `EmailConfirmed` int(11) NOT NULL,
   `PasswordHash` text,
   `SecurityStamp` text,
   `ConcurrencyStamp` text,
   `PhoneNumber` text,
-  `PhoneNumberConfirmed` bit(1) NOT NULL,
-  `TwoFactorEnabled` bit(1) NOT NULL,
+  `PhoneNumberConfirmed` int(11) NOT NULL,
+  `TwoFactorEnabled` int(11) NOT NULL,
   `LockoutEnd` timestamp NULL DEFAULT NULL,
-  `LockoutEnabled` bit(1) NOT NULL,
+  `LockoutEnabled` int(11) NOT NULL,
   `AccessFailedCount` int(11) NOT NULL,
   PRIMARY KEY (`Id`),
   UNIQUE KEY `UserNameIndex` (`NormalizedUserName`),
@@ -209,7 +207,7 @@ CREATE TABLE `aspnetusers` (
 
 LOCK TABLES `aspnetusers` WRITE;
 /*!40000 ALTER TABLE `aspnetusers` DISABLE KEYS */;
-INSERT INTO `aspnetusers` VALUES ('2f0aba92-e0e5-4c88-9dac-354f6a780477','g.lizano@hotmail.es','G.LIZANO@HOTMAIL.ES','g.lizano@hotmail.es','G.LIZANO@HOTMAIL.ES',_binary '\0','AQAAAAEAACcQAAAAEK7Pobg2/ZrZnkJuOAfuEQ1y0xBDQ76sl/Bp4tF3BclntZtdJ4gvIL3gSDsnqGWzDQ==','MRSOMUJ56ETMCPDARNLNE4AYEBHZYLEE','4f61ae1a-de47-4516-bbed-c6fd66becaf5',NULL,_binary '\0',_binary '\0',NULL,_binary '',0);
+INSERT INTO `aspnetusers` VALUES ('4b416e4e-4e56-41a0-9d14-3bec6a67b50b','g.lizano@hotmail.es','G.LIZANO@HOTMAIL.ES','g.lizano@hotmail.es','G.LIZANO@HOTMAIL.ES',0,'AQAAAAEAACcQAAAAEPXIsbGe7U8VQbVEUu3WzIRfQymxtBOlRuy3udHJobhVueaf8AvK9g5blcef2pRryA==','VXD5XBY7YHFXT47F5YR4H45NKXMK5P3A','4999a406-8957-4f5e-b077-fe5954b68b29',NULL,0,0,NULL,1,0);
 /*!40000 ALTER TABLE `aspnetusers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -328,7 +326,7 @@ DROP TABLE IF EXISTS `propiedades`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `propiedades` (
-  `Id` int(11) NOT NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Titulo` text,
   `Precio` double NOT NULL DEFAULT '0',
   `CitaId` int(11) DEFAULT NULL,
@@ -336,10 +334,12 @@ CREATE TABLE `propiedades` (
   `Descripcion` text,
   `Moneda` text,
   `NombrePropietario` text,
+  `Categoria` text,
+  `Tipo` text,
   PRIMARY KEY (`Id`),
   KEY `IX_Propiedades_CitaId` (`CitaId`),
   CONSTRAINT `FK_Propiedades_Citas_CitaId` FOREIGN KEY (`CitaId`) REFERENCES `citas` (`Id`) ON DELETE RESTRICT
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -348,6 +348,7 @@ CREATE TABLE `propiedades` (
 
 LOCK TABLES `propiedades` WRITE;
 /*!40000 ALTER TABLE `propiedades` DISABLE KEYS */;
+INSERT INTO `propiedades` VALUES (5,'SE VENDE LOTE EN SAN RAFAEL DE HEREDIA ¢33 MILLONES',33000000,NULL,'88123456','Área 218 m2 ( 12 mts de frente)\r\n\r\nPRECIO 33 MILLONES\r\n\r\nTopografía 100 % plana\r\n\r\nSúper lindo\r\n\r\nMuy cerca de la iglesia de Los Ángeles San Rafael de Heredia','₡','Josue Jimenez','Casa','Venta'),(6,'SE VENDE CASA CONDOMINIO SAN RAFAEL DE HEREDIA ¢63 MILLONES',63000000,NULL,'61234567','Área de Terreno 144 m2\r\n\r\nÁrea De Construcción 100 m2\r\n\r\nPRECIO 63 MILLONES\r\n\r\nCochera para 2 vehículos\r\n\r\nSala\r\n\r\nCocina\r\n\r\n2 Habitaciones\r\n\r\n2 baños\r\n\r\nPatio\r\n\r\nEl condominio cuenta con seguridad 24 horas, además cuenta con hermosos senderos en los alrededores del condominio. El condominio es muy céntrico, cerca de escuelas, centros comerciales.','₡','Luis Lizano','Casa','Venta'),(7,'SE VENDE HERMOSA CASA EN BELEN HEREDIA',250000,NULL,'22123456','Casa en Belén, Heredia! $250 mil dólares\r\n\r\nÁrea de Terreno 164 m2\r\n\r\nÁrea de Construcción 200 m2\r\n\r\n \r\n\r\n**3 habitaciones, todas con closet.\r\n**Habitacion principal con Walk-in closet y baño con 2 lavados, jacuzzi y terraza.\r\n**2 baños + baño de visitas de planta baja.\r\n**Cocina recién remodelada con mueble de Laurel moderno, cuarzo blanco, Incluye: cocina de vitroceramica, horno convección empotrado, lavavajillas.\r\n**Piso en planta baja de porcelanato madera.\r\n**Sala\r\n**comedor\r\n**concepto abierto!\r\n**Garaje para 2 autos\r\n**Area de pilas\r\n**Area verde interna y externa (todo con zacate sintético de Stadium Source.\r\n**Mata alrededor de la casa sintética/privacidad de Decogreen.\r\n*aire acondicionado en 2 habitaciones\r\n*Cerco eléctrico de seguridad\r\n*Puertas de Seguridad\r\n*Contruccion con SúperBloque.\r\n\r\nCerca del centro de convenciones, de real cariari, de lindora, de Pedregal, ultrapark, de la general cañas, supermercados, calle sin salida! Muy céntrico!','$','Jordan Jara',NULL,NULL);
 /*!40000 ALTER TABLE `propiedades` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -360,4 +361,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-08-09 16:47:57
+-- Dump completed on 2019-09-18 19:19:08

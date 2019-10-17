@@ -52,7 +52,7 @@ namespace SBR
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider services)
         {
             if (env.IsDevelopment())
             {
@@ -78,6 +78,22 @@ namespace SBR
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            CreateUserRoles(services).Wait();
+        }
+
+        private async Task CreateUserRoles(IServiceProvider serviceProvider)
+        {
+            var UserManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+
+            //Assign Admin role to the main User here we have given our newly registered 
+            //login id for Admin management
+            IdentityUser user = await UserManager.FindByNameAsync("g.lizano@hotmail.es");
+            if (user == null)
+            {
+                var iuser = new IdentityUser { UserName = "g.lizano@hotmail.es", Email = "g.lizano@hotmail.es" };
+                await UserManager.CreateAsync(iuser, "Hola.123");
+            }
         }
     }
 }

@@ -13,6 +13,8 @@ namespace SBR.Models
         public string Nombre { set; get; }
         public string Contacto { set; get; }
 
+        public String Gustos { set; get; }
+
         public virtual ICollection<Caracteristica> Intereses { get; set; }
     }
 }

@@ -10,7 +10,7 @@
 <p>
     <a asp-action="Create">Agregar Nuevo</a>
 </p>
-<table class="table">
+<table class="table table-striped table-bordered">
     <thead>
         <tr>
             <th>
@@ -18,6 +18,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Contacto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gustos)
             </th>
             <th></th>
         </tr>
@@ -30,6 +33,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Contacto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gustos)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |

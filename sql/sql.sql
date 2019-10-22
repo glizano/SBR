@@ -35,7 +35,7 @@ CREATE TABLE `__efmigrationshistory` (
 
 LOCK TABLES `__efmigrationshistory` WRITE;
 /*!40000 ALTER TABLE `__efmigrationshistory` DISABLE KEYS */;
-INSERT INTO `__efmigrationshistory` VALUES ('20190809210511_ModelMigration1','2.2.6-servicing-10079'),('20190809211008_ModelMigration2','2.2.6-servicing-10079'),('20190809211543_ModelMigration3','2.2.6-servicing-10079'),('20190809213838_ModelMigration4','2.2.6-servicing-10079'),('20190820025226_Migration5','2.2.6-servicing-10079'),('20190820025309_M6','2.2.6-servicing-10079'),('20190820141307_I1','2.2.6-servicing-10079'),('20190827020218_M1','2.2.6-servicing-10079');
+INSERT INTO `__efmigrationshistory` VALUES ('20190809210511_ModelMigration1','2.2.6-servicing-10079'),('20190809211008_ModelMigration2','2.2.6-servicing-10079'),('20190809211543_ModelMigration3','2.2.6-servicing-10079'),('20190809213838_ModelMigration4','2.2.6-servicing-10079'),('20190820025226_Migration5','2.2.6-servicing-10079'),('20190820025309_M6','2.2.6-servicing-10079'),('20190820141307_I1','2.2.6-servicing-10079'),('20190827020218_M1','2.2.6-servicing-10079'),('20191022003109_M4','2.2.6-servicing-10079'),('20191022005949_M5','2.2.6-servicing-10079');
 /*!40000 ALTER TABLE `__efmigrationshistory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -305,8 +305,9 @@ CREATE TABLE `clientes` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Nombre` text,
   `Contacto` text,
+  `Gustos` text,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -315,6 +316,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
+INSERT INTO `clientes` VALUES (1,'cliente 1`','383839','2 Cuartos'),(2,'Otro','as','as');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -336,6 +338,7 @@ CREATE TABLE `propiedades` (
   `NombrePropietario` text,
   `Categoria` text,
   `Tipo` text,
+  `Provincia` text,
   PRIMARY KEY (`Id`),
   KEY `IX_Propiedades_CitaId` (`CitaId`),
   CONSTRAINT `FK_Propiedades_Citas_CitaId` FOREIGN KEY (`CitaId`) REFERENCES `citas` (`Id`) ON DELETE RESTRICT
@@ -348,7 +351,7 @@ CREATE TABLE `propiedades` (
 
 LOCK TABLES `propiedades` WRITE;
 /*!40000 ALTER TABLE `propiedades` DISABLE KEYS */;
-INSERT INTO `propiedades` VALUES (5,'SE VENDE LOTE EN SAN RAFAEL DE HEREDIA ¢33 MILLONES',33000000,NULL,'88123456','Área 218 m2 ( 12 mts de frente)\r\n\r\nPRECIO 33 MILLONES\r\n\r\nTopografía 100 % plana\r\n\r\nSúper lindo\r\n\r\nMuy cerca de la iglesia de Los Ángeles San Rafael de Heredia','₡','Josue Jimenez','Casa','Venta'),(6,'SE VENDE CASA CONDOMINIO SAN RAFAEL DE HEREDIA ¢63 MILLONES',63000000,NULL,'61234567','Área de Terreno 144 m2\r\n\r\nÁrea De Construcción 100 m2\r\n\r\nPRECIO 63 MILLONES\r\n\r\nCochera para 2 vehículos\r\n\r\nSala\r\n\r\nCocina\r\n\r\n2 Habitaciones\r\n\r\n2 baños\r\n\r\nPatio\r\n\r\nEl condominio cuenta con seguridad 24 horas, además cuenta con hermosos senderos en los alrededores del condominio. El condominio es muy céntrico, cerca de escuelas, centros comerciales.','₡','Luis Lizano','Casa','Venta'),(7,'SE VENDE HERMOSA CASA EN BELEN HEREDIA',250000,NULL,'22123456','Casa en Belén, Heredia! $250 mil dólares\r\n\r\nÁrea de Terreno 164 m2\r\n\r\nÁrea de Construcción 200 m2\r\n\r\n \r\n\r\n**3 habitaciones, todas con closet.\r\n**Habitacion principal con Walk-in closet y baño con 2 lavados, jacuzzi y terraza.\r\n**2 baños + baño de visitas de planta baja.\r\n**Cocina recién remodelada con mueble de Laurel moderno, cuarzo blanco, Incluye: cocina de vitroceramica, horno convección empotrado, lavavajillas.\r\n**Piso en planta baja de porcelanato madera.\r\n**Sala\r\n**comedor\r\n**concepto abierto!\r\n**Garaje para 2 autos\r\n**Area de pilas\r\n**Area verde interna y externa (todo con zacate sintético de Stadium Source.\r\n**Mata alrededor de la casa sintética/privacidad de Decogreen.\r\n*aire acondicionado en 2 habitaciones\r\n*Cerco eléctrico de seguridad\r\n*Puertas de Seguridad\r\n*Contruccion con SúperBloque.\r\n\r\nCerca del centro de convenciones, de real cariari, de lindora, de Pedregal, ultrapark, de la general cañas, supermercados, calle sin salida! Muy céntrico!','$','Jordan Jara',NULL,NULL);
+INSERT INTO `propiedades` VALUES (5,'SE VENDE LOTE EN SAN RAFAEL DE HEREDIA ¢33 MILLONES',33000000,NULL,'88123456','Área 218 m2 ( 12 mts de frente)\r\n\r\nPRECIO 33 MILLONES\r\n\r\nTopografía 100 % plana\r\n\r\nSúper lindo\r\n\r\nMuy cerca de la iglesia de Los Ángeles San Rafael de Heredia','₡','Josue Jimenez','Lote/Terreno','Venta','heredia'),(6,'SE VENDE CASA CONDOMINIO SAN RAFAEL DE HEREDIA ¢63 MILLONES',63000000,NULL,'61234567','Área de Terreno 144 m2\r\n\r\nÁrea De Construcción 100 m2\r\n\r\nPRECIO 63 MILLONES\r\n\r\nCochera para 2 vehículos\r\n\r\nSala\r\n\r\nCocina\r\n\r\n2 Habitaciones\r\n\r\n2 baños\r\n\r\nPatio\r\n\r\nEl condominio cuenta con seguridad 24 horas, además cuenta con hermosos senderos en los alrededores del condominio. El condominio es muy céntrico, cerca de escuelas, centros comerciales.','₡','Luis Lizano','Apartamento','Alquiler','alajuela'),(7,'SE VENDE HERMOSA CASA EN BELEN HEREDIA',250000,NULL,'22123456','Casa en Belén, Heredia! $250 mil dólares\r\n\r\nÁrea de Terreno 164 m2\r\n\r\nÁrea de Construcción 200 m2\r\n\r\n \r\n\r\n**3 habitaciones, todas con closet.\r\n**Habitacion principal con Walk-in closet y baño con 2 lavados, jacuzzi y terraza.\r\n**2 baños + baño de visitas de planta baja.\r\n**Cocina recién remodelada con mueble de Laurel moderno, cuarzo blanco, Incluye: cocina de vitroceramica, horno convección empotrado, lavavajillas.\r\n**Piso en planta baja de porcelanato madera.\r\n**Sala\r\n**comedor\r\n**concepto abierto!\r\n**Garaje para 2 autos\r\n**Area de pilas\r\n**Area verde interna y externa (todo con zacate sintético de Stadium Source.\r\n**Mata alrededor de la casa sintética/privacidad de Decogreen.\r\n*aire acondicionado en 2 habitaciones\r\n*Cerco eléctrico de seguridad\r\n*Puertas de Seguridad\r\n*Contruccion con SúperBloque.\r\n\r\nCerca del centro de convenciones, de real cariari, de lindora, de Pedregal, ultrapark, de la general cañas, supermercados, calle sin salida! Muy céntrico!','$','Jordan Jara','Casa','Venta','guanacaste');
 /*!40000 ALTER TABLE `propiedades` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -361,4 +364,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-09-18 19:19:08
+-- Dump completed on 2019-10-21 19:57:32

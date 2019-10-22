@@ -131,7 +131,7 @@ namespace SBR.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Titulo,Precio,Moneda,Descripcion,NombrePropietario,ContactoPropietario")] Propiedad propiedad)
+        public async Task<IActionResult> Edit(int id, Propiedad propiedad)
         {
             if (id != propiedad.Id)
             {

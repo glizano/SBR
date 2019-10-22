@@ -21,6 +21,7 @@ namespace SBR.Models
         public string ContactoPropietario { set; get; }
         public string Tipo { set; get; }
         public string Categoria { set; get; }
+        public string Provincia { set; get; }
 
         [NotMapped]
         public virtual List<string> imagenes { set; get; } = new List<string>();

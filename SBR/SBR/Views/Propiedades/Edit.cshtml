@@ -26,10 +26,21 @@
                 </select>
             </div>
             <div class="form-group">
+                <label asp-for="Provincia" class="control-label"></label>
+                <select asp-for="Provincia" class="form-control">
+                    <option value="heredia">Heredia</option>
+                    <option value="alajuela">Alajuela</option>
+                    <option value="san-jose">San José</option>
+                    <option value="guanacaste">Guanacaste</option>
+                    <option value="puntarenas">Puntarenas</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label asp-for="Categoria" class="control-label"></label>
                 <select asp-for="Categoria" class="form-control">
                     <option value="Casa">Casa</option>
                     <option value="Apartamento">Apartamento</option>
+                    <option value="Lote/Terreno">Lote/Terreno</option>
                 </select>
             </div>
             <div class="form-group">

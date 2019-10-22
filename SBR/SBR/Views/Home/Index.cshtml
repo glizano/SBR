@@ -8,19 +8,17 @@
     <section id="property-search" class="property-search bg-site-dark-brown mt-5 p-3">
         <div class="text-center">
             <h4 class="widget-title widgettitle bg-sitep-light-brown">Buscar Propiedades</h4>
-            <form role="search" method="get" id="searchform" action="#" class="form-inline justify-content-center">
-                <input type="hidden" value="" name="s"><input type="hidden" value="listing" name="post_type">
-                <select name="categora" id="categora" class="form-control mx-2">
+            <form role="search" method="get" id="searchform" asp-action="Index" class="form-inline justify-content-center">
+                <select name="categoria" id="categoria" class="form-control mx-2" >
                     <option value="" selected="selected">Todas las propiedades</option>
-                    <option value="casas">Casas</option>
-                    <option value="lote">Lote</option>
-                    <option value="apartamentos">Apartamentos</option>
-                    <option value="comercial">Comercial</option>
+                    <option value="Casa">Casa</option>
+                    <option value="Apartamento">Apartamento</option>
+                    <option value="Lote/Terreno">Lote/Terreno</option>
                 </select>
                 <select name="operacion" id="operacion" class="form-control mx-2">
-                    <option value="" selected="selected">Compra/Alquiler</option>
-                    <option value="compra">Compra</option>
-                    <option value="alquiler">Alquiler</option>
+                    <option value="" selected="selected">Venta/Alquiler</option>
+                    <option value="Venta">Venta</option>
+                    <option value="Alquiler">Alquiler</option>
                 </select>
                 <select name="provincia" id="provincia" class="form-control mx-2">
                     <option value="" selected="selected">Todas las provincias</option>
@@ -65,3 +63,11 @@
         </div>
     </div>
 </div>
+
+<script>
+
+    document.getElementById('categoria').value="@ViewBag.categoria"
+    document.getElementById('operacion').value="@ViewBag.operacion"
+    document.getElementById('provincia').value="@ViewBag.provincia"
+
+</script>

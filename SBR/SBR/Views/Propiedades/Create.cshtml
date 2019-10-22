@@ -29,6 +29,17 @@
                 <select asp-for="Categoria" class="form-control">
                     <option value="Casa">Casa</option>
                     <option value="Apartamento">Apartamento</option>
+                    <option value="Lote/Terreno">Lote/Terreno</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Provincia" class="control-label"></label>
+                <select asp-for="Provincia" class="form-control">
+                    <option value="heredia">Heredia</option>
+                    <option value="alajuela">Alajuela</option>
+                    <option value="san-jose">San José</option>
+                    <option value="guanacaste">Guanacaste</option>
+                    <option value="puntarenas">Puntarenas</option>
                 </select>
             </div>
             <div class="form-group">
@@ -44,7 +55,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Descripcion" class="control-label"></label>
-                <textarea asp-for="Descripcion" class="form-control" rows="5" ></textarea>
+                <textarea asp-for="Descripcion" class="form-control" rows="5"></textarea>
             </div>
             <div class="form-group">
                 <label asp-for="NombrePropietario" class="control-label"></label>
@@ -56,7 +67,7 @@
             </div>
             <div class="form-group">
                 <label class="control-label">Imagen Principal</label>
-                <br/>
+                <br />
                 <input type="file" name="imgPrincipal" required>
             </div>
             <div class="form-group">

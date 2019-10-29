@@ -10,14 +10,23 @@
 <p>
     <a asp-action="Create">Agregar Nuevo</a>
 </p>
-<table class="table">
+<table class="table table-striped table-bordered">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.cliente)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.FechaInicio)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.HoraInicio)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.FechaFinal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoraFinal)
             </th>
             <th></th>
         </tr>
@@ -26,11 +35,25 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.cliente)
+            </td>
+
+            <td>
                 @Html.DisplayFor(modelItem => item.FechaInicio)
             </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.HoraInicio)
+            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.FechaFinal)
             </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.HoraFinal)
+            </td>
+
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |

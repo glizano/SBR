@@ -54,7 +54,7 @@ namespace SBR.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FechaInicio,FechaFinal")] Cita cita)
+        public async Task<IActionResult> Create([Bind("Id,FechaInicio,FechaFinal,cliente,HoraInicio,HoraFinal")] Cita cita)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace SBR.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FechaInicio,FechaFinal")] Cita cita)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FechaInicio,FechaFinal,Cliente,HoraInicio,HoraFinal")] Cita cita)
         {
             if (id != cita.Id)
             {
@@ -149,5 +149,10 @@ namespace SBR.Controllers
         {
             return _context.Citas.Any(e => e.Id == id);
         }
+        public IActionResult DateTime_Picker_Demo()
+        {
+            return View();
+        }
+
     }
 }
